@@ -1,0 +1,127 @@
+name: postgres
+icon: postgres
+type: db
+title: PostgreSQL
+hostname: postgres
+containers:
+- name: postgres
+  image: wodby/postgres
+  ports:
+  - name: postgres
+    number: 5432
+    type: tcp
+  env:
+  - name: POSTGRES_PASSWORD
+    value: '{{password}}'
+    secret: true    
+options:
+- version: 14
+- version: 13
+scalable: false
+labels:
+- postgres
+- postgresql
+
+volumes:
+- name: data
+  title: Data
+  path: /var/lib/postgresql/data
+  size: 10
+
+database:
+  type: postgres
+  kind: postgres
+  port: 5432
+  ssl: true
+  root:
+    username: postgres
+    password: '{{password}}'
+  db:
+    name: '{{app.name}}_{{instance.name}}'
+    charset: 'UTF8'
+    collation: 'en_US.UTF8'    
+    actions:
+      create:
+        args:
+        - make
+        - create-db
+        - 'name="{{database.db.name}}"'
+        - 'charset="{{database.db.charset}}"'
+        - 'collation="{{database.db.collation}}"'        
+        - 'host="{{database.host}}"'
+      drop:
+        args:
+        - make
+        - drop-db
+        - 'name="{{database.db.name}}"'  
+        - 'host="{{database.host}}"'        
+  user:
+    name: '{{app.name}}_{{instance.name}}'  
+    password: '{{password}}'
+    actions:
+      create: 
+        args:
+        - make
+        - create-user
+        - 'username="{{database.user.name}}"'
+        - 'password="{{database.user.password}}"'
+        - 'host="{{database.host}}"'        
+      drop:
+        args:
+        - make
+        - drop-user
+        - 'username="{{database.user.name}}"'
+        - 'host="{{database.host}}"'        
+      grant:
+        args:
+        - make
+        - grant-user-db
+        - 'username="{{database.user.name}}"'
+        - 'db="{{database.db.name}}"'
+        - 'host="{{database.host}}"'
+      revoke:
+        args:
+        - make
+        - revoke-user-db
+        - 'username="{{database.user.name}}"'
+        - 'db="{{database.db.name}}"'
+        - 'host="{{database.host}}"'
+
+imports:
+- name: database
+  title: Database import
+  args:
+  - make
+  - import
+  - 'host="{{database.host}}"'
+  - 'db="{{database.db.name}}"'
+  - 'user="{{database.user.name}}"'      
+  - 'source="{{wodby_import_url}}"'
+  extensions:
+  - gz
+  - tar.gz
+  - tgz
+  - zip
+
+backups:
+- name: database
+  title: Default database backup
+  create:
+    args:
+    - make
+    - backup
+    - 'host="{{database.host}}"'
+    - 'db="{{database.db.name}}"'
+    - 'ignore="{{db_backup_ignore_tables}}"'
+    - 'filepath=/var/lib/postgresql/data/backup.sql.gz'
+  upload:
+    filepath: /var/lib/postgresql/data/backup.sql.gz
+    extension: sql.gz
+  integrations:
+  - backup-destination
+
+tokens:
+- name: password
+  generate:
+    regex: '[0-9a-z-]{32}'
+
