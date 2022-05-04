@@ -15,8 +15,8 @@ containers:
     value: '{{password}}'
     secret: true    
 options:
-- version: 14
-- version: 13
+- version: '14'
+- version: '13'
 scalable: false
 labels:
 - postgres
