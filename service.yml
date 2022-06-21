@@ -86,6 +86,11 @@ database:
         - 'username="{{database.user.name}}"'
         - 'db="{{database.db.name}}"'
         - 'host="{{database.host}}"'
+  charsets:
+  - name: UTF8
+    title: UTF8
+    collation: English_United States.1252
+    default: true
 
 imports:
 - name: database
