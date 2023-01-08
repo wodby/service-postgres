@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    name: postgres
-  name: postgres
+    name: '{{.Name}}'
+  name: '{{.Name}}'
 spec:
-  serviceName: postgres
+  serviceName: '{{.Name}}'
   selector:
     matchLabels:
-      name: postgres
+      name: '{{.Name}}'
   template:
     metadata:
       labels:
-        name: postgres
+        name: '{{.Name}}'
     spec:
       containers:
       - image: wodby/postgres
