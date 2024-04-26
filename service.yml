@@ -129,6 +129,8 @@ helm:
     value: '{{root_password}}'
   - name: primary.createConfigmap
     value: false
+  - name: primary.resourcesPreset
+    value: 'none'    
 
 configs: 
 - name: config
