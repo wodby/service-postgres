@@ -11,9 +11,8 @@ containers:
     number: 5432
     type: tcp
   env:
-  - name: POSTGRES_PASSWORD
-    value: '{{password}}'
-    secret: true    
+  - name: DISABLE_WELCOME_MESSAGE
+    value: 'true'
 options:
 - version: '16'
   tag: 16.2.0-debian-12-r15
