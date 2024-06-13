@@ -5,17 +5,16 @@ title: PostgreSQL
 hostname: postgres
 containers:
 - name: postgres
-  image: bitnami/postgresql
+  image: wodby/postgres
+options:
+- version: '16'
+  tag: '16'
+endpoints:
+- name: postgres
   ports:
   - name: postgres
     number: 5432
-    type: tcp
-  env:
-  - name: DISABLE_WELCOME_MESSAGE
-    value: 'true'
-options:
-- version: '16'
-  tag: 16.2.0-debian-12-r15
+    type: tcp  
 scalable: false
 labels:
 - postgres
@@ -115,9 +114,9 @@ database:
 
 helm:
   name: bitnami
-  source: oci://registry-1.docker.io/bitnamicharts/postgresql
-  chart: oci://registry-1.docker.io/bitnamicharts/postgresql
-  version: 15.2.5
+  source: oci://registry-1.docker.io/wodby/postgres
+  chart: oci://registry-1.docker.io/wodby/postgres
+  version: 0.1.0
   configurations:
   - name: postgresql
     labels: commonLabels
@@ -135,9 +134,7 @@ helm:
 configs: 
 - name: config
   title: PostgreSQL config
-  helm: primary.configuration
-  config: ""
-
+  config: postgresql.conf
 
 backups:
 - name: database
