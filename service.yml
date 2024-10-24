@@ -150,8 +150,6 @@ backups:
   upload:
     filepath: /var/lib/postgresql/data/backup.sql.gz
     extension: sql.gz
-  integrations:
-  - backup-destination
 
 tokens:
 - name: password
