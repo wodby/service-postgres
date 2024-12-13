@@ -7,8 +7,8 @@ containers:
 - name: postgres
   image: wodby/postgres
 options:
-- version: '16'
-  tag: '16'
+- version: '17'
+  tag: '17'
 endpoints:
 - name: postgres
   ports:
