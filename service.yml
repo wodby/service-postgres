@@ -134,7 +134,8 @@ helm:
 configs: 
 - name: config
   title: PostgreSQL config
-  config: postgresql.conf
+  config: postgresql.conf.tmpl
+  filepath: /etc/gotpl/postgres.conf.tmpl
 
 backups:
 - name: database
