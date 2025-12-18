@@ -1,1 +1,1 @@
-# Cloud PostgreSQL service (external) for Wodby 2.0
+# PostgreSQL service for Wodby 2.0
