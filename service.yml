@@ -46,7 +46,7 @@ database:
   db:
     name: '{{app.name}}_{{instance.name}}'
     charset: 'UTF8'
-    collation: 'en_US.UTF8'    
+    collation: 'en_US.utf8'    
     actions:
       create:
         args:
