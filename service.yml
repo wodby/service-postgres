@@ -125,14 +125,14 @@ helm:
   chart: oci://registry-1.docker.io/wodby/postgres
   version: 0.2.0
   configurations:
-  - name: postgresql
+  - name: postgres
     labels: commonLabels
     annotations: commonAnnotations
     env: primary.extraEnvVars
     resources: primary.resources
   values:
   - name: primary.resourcesPreset
-    value: 'none'    
+    value: 'none'
 
 configs: 
 - name: config
