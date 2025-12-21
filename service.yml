@@ -7,6 +7,8 @@ containers:
 - name: postgres
   image: wodby/postgres
 options:
+- version: '18'
+  tag: '18'
 - version: '17'
   tag: '17'
 - version: '16'
