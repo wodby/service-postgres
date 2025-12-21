@@ -32,6 +32,10 @@ volumes:
       value: '{{volumes.data.size}}Gi'
     - name: primary.persistence.enabled
       value: true
+    # mandatory to use existing claim since this volume has import function
+    # we will mount different claim after import and doing it through sts's volumeclaimtemplates is not supported
+    - name: primary.persistence.existingClaim
+      value: '{{volumes.data.claim}}'
 
 database:
   type: postgres
@@ -97,21 +101,21 @@ database:
     collation: English_United States.1252
     default: true
 
-# imports:
-# - name: database
-#   title: Database import
-#   args:
-#   - make
-#   - import
-#   - 'host="{{database.host}}"'
-#   - 'db="{{database.db.name}}"'
-#   - 'user="{{database.user.name}}"'      
-#   - 'source="{{wodby_import_url}}"'
-#   extensions:
-#   - gz
-#   - tar.gz
-#   - tgz
-#   - zip
+imports:
+  - name: database
+    title: Database import
+    args:
+      - make
+      - import
+      - 'host="{{database.host}}"'
+      - 'db="{{database.db.name}}"'
+      - 'user="{{database.user.name}}"'      
+      - 'source="{{wodby_import_url}}"'
+    extensions:
+      - gz
+      - tar.gz
+      - tgz
+      - zip
 
 
 helm:
