@@ -106,13 +106,12 @@ database:
 imports:
   - name: database
     title: Database import
-    args:
-      - make
-      - import
-      - 'host="{{database.host}}"'
-      - 'db="{{database.db.name}}"'
-      - 'user="{{database.user.name}}"'      
-      - 'source="{{wodby_import_url}}"'
+    volume: data
+    init:
+      mount: /docker-entrypoint-initdb.d
+      env:
+      - name: POSTGRES_DB
+        value: '{{database.db.name}}'
     extensions:
       - gz
       - tar.gz
