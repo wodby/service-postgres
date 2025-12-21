@@ -6,6 +6,9 @@ hostname: postgres
 containers:
 - name: postgres
   image: wodby/postgres
+  env:
+  - name: POSTGRES_PASSWORD  
+    value: '{{password}}'
 options:
 - version: '18'
   tag: '18'
@@ -116,7 +119,7 @@ imports:
 
 
 helm:
-  name: bitnami
+  name: wodby
   source: oci://registry-1.docker.io/wodby/postgres
   chart: oci://registry-1.docker.io/wodby/postgres
   version: 0.2.0
@@ -127,10 +130,6 @@ helm:
     env: primary.extraEnvVars
     resources: primary.resources
   values:
-  - name: rootPassword
-    value: '{{root_password}}'
-  - name: primary.createConfigmap
-    value: false
   - name: primary.resourcesPreset
     value: 'none'    
 
