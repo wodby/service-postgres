@@ -6,10 +6,6 @@ hostname: postgres
 containers:
 - name: postgres
   image: wodby/postgres
-  env:
-  - name: POSTGRES_PASSWORD  
-    value: '{{root_password}}'
-    secret: true
 options:
 - version: '18'
   tag: '18'
@@ -133,6 +129,8 @@ helm:
   values:
   - name: primary.resourcesPreset
     value: 'none'
+  - name: auth.password
+    value: '{{root_password}}'
 
 configs: 
 - name: config
