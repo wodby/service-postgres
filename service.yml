@@ -9,10 +9,6 @@ containers:
 options:
 - version: '18'
   tag: '18'
-- version: '17'
-  tag: '17'
-- version: '16'
-  tag: '16'  
 endpoints:
 - name: postgres
   ports:
