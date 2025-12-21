@@ -148,7 +148,7 @@ backups:
     - backup
     - 'host="{{database.host}}"'
     - 'db="{{database.db.name}}"'
-    - 'ignore="{{db_backup_ignore_tables}}"'
+    - 'exclude_tables="{{exclude_tables}}"'
     - 'filepath=/var/lib/postgresql/data/backup.sql.gz'
   upload:
     filepath: /var/lib/postgresql/data/backup.sql.gz
@@ -161,3 +161,5 @@ tokens:
 - name: root_password
   generate:
     regex: '[0-9a-z-]{32}'
+- name: exclude_tables
+  value: ''
