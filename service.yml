@@ -8,7 +8,7 @@ containers:
   image: wodby/postgres
   env:
   - name: POSTGRES_PASSWORD  
-    value: '{{password}}'
+    value: '{{root_password}}'
     secret: true
 options:
 - version: '18'
@@ -157,5 +157,8 @@ backups:
 
 tokens:
 - name: password
+  generate:
+    regex: '[0-9a-z-]{32}'
+- name: root_password
   generate:
     regex: '[0-9a-z-]{32}'
