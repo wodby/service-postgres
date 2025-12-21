@@ -53,8 +53,9 @@ database:
         - make
         - create-db
         - 'name="{{database.db.name}}"'
-        - 'charset="{{database.db.charset}}"'
-        - 'collation="{{database.db.collation}}"'        
+        - 'encoding="{{database.db.charset}}"'
+        - 'lc_collate="{{database.db.collation}}"'
+        - 'lc_ctype="{{database.db.collation}}"'
         - 'host="{{database.host}}"'
       drop:
         args:
@@ -96,7 +97,7 @@ database:
   charsets:
   - name: UTF8
     title: UTF8
-    collation: English_United States.1252
+    collation: en_US.utf8
     default: true
 
 imports:
