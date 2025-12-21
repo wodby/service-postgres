@@ -149,9 +149,9 @@ backups:
     - 'host="{{database.host}}"'
     - 'db="{{database.db.name}}"'
     - 'ignore="{{exclude_tables}}"'
-    - 'filepath=/var/lib/postgresql/data/backup.sql.gz'
+    - 'filepath=/var/lib/postgresql/backup.sql.gz'
   upload:
-    filepath: /var/lib/postgresql/data/backup.sql.gz
+    filepath: /var/lib/postgresql/backup.sql.gz
     extension: sql.gz
 
 tokens:
