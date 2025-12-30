@@ -14,7 +14,7 @@ endpoints:
   ports:
   - name: postgres
     number: 5432
-    type: tcp  
+    protocol: tcp  
 scalable: false
 labels:
 - postgres
