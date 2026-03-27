@@ -127,6 +127,8 @@ helm:
     annotations: commonAnnotations
     env: primary.extraEnvVars
     resources: primary.resources
+    volumes: primary.extraVolumes
+    mounts: primary.extraVolumeMounts
   values:
   - name: primary.resourcesPreset
     value: 'none'
