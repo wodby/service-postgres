@@ -122,7 +122,7 @@ helm:
   chart: oci://registry-1.docker.io/wodby/postgres
   version: 0.2.0
   configurations:
-  - container: postgres
+  - container: postgresql
     labels: commonLabels
     annotations: commonAnnotations
     env: primary.extraEnvVars
