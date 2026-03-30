@@ -2,9 +2,8 @@ name: postgres
 icon: postgres
 type: db
 title: PostgreSQL
-hostname: postgres
 containers:
-- name: postgres
+- name: postgresql
   image: wodby/postgres
 options:
 - version: '18'
