@@ -7,7 +7,7 @@ containers:
   image: wodby/postgres
 options:
 - version: '18'
-  tag: '18-1.39.0'
+  tag: '18'
 endpoints:
 - name: postgres
   ports:
