@@ -119,7 +119,7 @@ helm:
   name: wodby
   source: oci://registry-1.docker.io/wodby/postgres
   chart: oci://registry-1.docker.io/wodby/postgres
-  version: 0.2.0
+  version: 0.2.1
   configurations:
   - container: postgresql
     labels: commonLabels
