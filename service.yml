@@ -41,7 +41,7 @@ database:
   ssl: true
   root:
     username: postgres
-    password: '{{password}}'
+    password: '{{root_password}}'
   db:
     name: '{{app.name}}_{{instance.name}}'
     charset: 'UTF8'
