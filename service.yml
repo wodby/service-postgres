@@ -153,10 +153,15 @@ tokens:
     regex: '[0-9a-z-]{32}'
 - name: exclude_tables
   value: ''
+
 workloads:
 - id: main
   kind: statefulset
   primary: true
+  helm:
+    labels: commonLabels
+    annotations: commonAnnotations
+    volumes: primary.extraVolumes
   containers:
   - name: postgresql
     image: wodby/postgres
@@ -164,7 +169,3 @@ workloads:
       resources: primary.resources
       env: primary.extraEnvVars
       mounts: primary.extraVolumeMounts
-  helm:
-    labels: commonLabels
-    annotations: commonAnnotations
-    volumes: primary.extraVolumes
