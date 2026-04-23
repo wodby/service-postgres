@@ -2,9 +2,6 @@ name: postgres
 icon: postgres
 type: db
 title: PostgreSQL
-containers:
-- name: postgresql
-  image: wodby/postgres
 options:
 - version: '18'
   tag: '18-1.40.0'
@@ -13,7 +10,7 @@ endpoints:
   ports:
   - name: postgres
     number: 5432
-    protocol: tcp  
+    protocol: tcp
 scalable: false
 labels:
 - postgres
@@ -21,7 +18,7 @@ labels:
 
 volumes:
 - name: data
-  title: Data  
+  title: Data
   size: 10
   helm:
     values:
@@ -45,7 +42,7 @@ database:
   db:
     name: '{{app.name}}_{{instance.name}}'
     charset: 'UTF8'
-    collation: 'en_US.utf8'    
+    collation: 'en_US.utf8'
     actions:
       create:
         args:
@@ -60,25 +57,25 @@ database:
         args:
         - make
         - drop-db
-        - 'name="{{database.db.name}}"'  
-        - 'host="{{database.host}}"'        
+        - 'name="{{database.db.name}}"'
+        - 'host="{{database.host}}"'
   user:
-    name: '{{app.name}}_{{instance.name}}'  
+    name: '{{app.name}}_{{instance.name}}'
     password: '{{password}}'
     actions:
-      create: 
+      create:
         args:
         - make
         - create-user
         - 'username="{{database.user.name}}"'
         - 'password="{{database.user.password}}"'
-        - 'host="{{database.host}}"'        
+        - 'host="{{database.host}}"'
       drop:
         args:
         - make
         - drop-user
         - 'username="{{database.user.name}}"'
-        - 'host="{{database.host}}"'        
+        - 'host="{{database.host}}"'
       grant:
         args:
         - make
@@ -100,19 +97,19 @@ database:
     default: true
 
 imports:
-  - name: database
-    title: Database import
-    volume: data
-    init:
-      mount: /docker-entrypoint-initdb.d
-      env:
-      - name: POSTGRES_DB
-        value: '{{database.db.name}}'
-    extensions:
-      - gz
-      - tar.gz
-      - tgz
-      - zip
+- name: database
+  title: Database import
+  volume: data
+  init:
+    mount: /docker-entrypoint-initdb.d
+    env:
+    - name: POSTGRES_DB
+      value: '{{database.db.name}}'
+  extensions:
+  - gz
+  - tar.gz
+  - tgz
+  - zip
 
 
 helm:
@@ -120,21 +117,13 @@ helm:
   source: oci://registry-1.docker.io/wodby/postgres
   chart: oci://registry-1.docker.io/wodby/postgres
   version: 0.2.1
-  configurations:
-  - container: postgresql
-    labels: commonLabels
-    annotations: commonAnnotations
-    env: primary.extraEnvVars
-    resources: primary.resources
-    volumes: primary.extraVolumes
-    mounts: primary.extraVolumeMounts
   values:
   - name: primary.resourcesPreset
     value: 'none'
   - name: auth.password
     value: '{{root_password}}'
 
-configs: 
+configs:
 - name: config
   title: PostgreSQL config
   config: postgresql.conf.tmpl
@@ -164,3 +153,18 @@ tokens:
     regex: '[0-9a-z-]{32}'
 - name: exclude_tables
   value: ''
+workloads:
+- id: main
+  kind: statefulset
+  primary: true
+  containers:
+  - name: postgresql
+    image: wodby/postgres
+    helm:
+      resources: primary.resources
+      env: primary.extraEnvVars
+      mounts: primary.extraVolumeMounts
+  helm:
+    labels: commonLabels
+    annotations: commonAnnotations
+    volumes: primary.extraVolumes
