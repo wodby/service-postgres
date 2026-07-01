@@ -4,7 +4,8 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: '18-1.40.0'
+  tag: '18-1.43.0'
+  eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
   ports:
