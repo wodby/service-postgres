@@ -127,7 +127,8 @@ helm:
 configs:
 - name: config
   title: PostgreSQL config
-  filepath: /etc/gotpl/postgres.conf.tmpl
+  version: '18'
+  filepath: /etc/gotpl/postgresql.conf.tmpl
   default:
     source: image
     filepath: /etc/gotpl/postgresql-18.conf.tmpl
