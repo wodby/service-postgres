@@ -117,9 +117,12 @@ helm:
   name: wodby
   source: oci://registry-1.docker.io/wodby/postgres
   chart: oci://registry-1.docker.io/wodby/postgres
-  version: 0.2.1
+  version: 0.3.0
   valueMappings:
     replicas: primary.replicaCount
+    strategy: primary.updateStrategy
+    minReady: primary.minReadySeconds
+    shutdownGracePeriod: primary.terminationGracePeriodSeconds
   values:
   - name: primary.resourcesPreset
     value: 'none'
