@@ -4,7 +4,7 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: '18-1.44.0'
+  tag: '18-1.44.1'
   eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
@@ -102,10 +102,15 @@ imports:
   title: Database import
   volume: data
   init:
-    mount: /docker-entrypoint-initdb.d
+    mount: /wodby/import
     env:
     - name: POSTGRES_DB
       value: '{{database.db.name}}'
+    - name: POSTGRES_INITDB_USER
+      value: '{{database.user.name}}'
+    - name: POSTGRES_INITDB_PASSWORD
+      value: '{{database.user.password}}'
+      secret: true
   extensions:
   - gz
   - tar.gz
