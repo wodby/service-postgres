@@ -151,13 +151,19 @@ configs:
 backups:
 - name: database
   title: Default database backup
+  options:
+  - name: excluded_tables
+    title: Excluded table contents
+    description: PostgreSQL table patterns whose definitions are retained while their rows are omitted.
+    type: table_list
+    defaultToken: exclude_tables
   create:
     args:
     - make
     - backup
     - 'host="{{database.host}}"'
     - 'db="{{database.db.name}}"'
-    - 'ignore="{{exclude_tables}}"'
+    - 'ignore="{{backup.options.excluded_tables}}"'
     - 'filepath=/var/lib/postgresql/backup.sql.gz'
   upload:
     filepath: /var/lib/postgresql/backup.sql.gz
