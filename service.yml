@@ -4,7 +4,7 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: '18-1.44.1'
+  tag: '18-1.45.0'
   eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
@@ -165,6 +165,17 @@ backups:
     - 'db="{{database.db.name}}"'
     - 'ignore="{{backup.options.excluded_tables}}"'
     - 'filepath=/var/lib/postgresql/backup.sql.gz'
+  stream:
+    optionVersions:
+    - '18'
+    args:
+    - make
+    - backup-stream
+    - 'host="{{database.host}}"'
+    - 'db="{{database.db.name}}"'
+    - 'ignore="{{backup.options.excluded_tables}}"'
+    - 'stream_path=/var/run/wodby-backup/data'
+    - 'status_path=/var/run/wodby-backup/status'
   upload:
     filepath: /var/lib/postgresql/backup.sql.gz
     extension: sql.gz
