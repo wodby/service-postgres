@@ -163,7 +163,7 @@ backups:
     - backup
     - 'host="{{database.host}}"'
     - 'db="{{database.db.name}}"'
-    - 'ignore="{{backup.options.excluded_tables}}"'
+    - 'ignore={{backup.options.excluded_tables}}'
     - 'filepath=/var/lib/postgresql/backup.sql.gz'
   stream:
     optionVersions:
@@ -173,7 +173,7 @@ backups:
     - backup-stream
     - 'host="{{database.host}}"'
     - 'db="{{database.db.name}}"'
-    - 'ignore="{{backup.options.excluded_tables}}"'
+    - 'ignore={{backup.options.excluded_tables}}'
     - 'stream_path=/var/run/wodby-backup/data'
     - 'status_path=/var/run/wodby-backup/status'
   upload:
