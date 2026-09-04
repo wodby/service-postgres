@@ -11,6 +11,7 @@ configuration for PostgreSQL.
 
 ## Wodby stacks using this service
 
+- [Chatwoot application stack](https://github.com/wodby/stack-chatwoot)
 - [Dagster application stack](https://github.com/wodby/stack-dagster)
 - [Django application stack](https://github.com/wodby/stack-django)
 - [Drupal application stack](https://github.com/wodby/stack-drupal)
@@ -48,6 +49,13 @@ reference `postgres` from a custom Wodby stack.
 A service is a reusable component and does not deploy by itself. The stack
 defines its links, settings, versions, resources, and relationship to the rest
 of the application.
+
+## Optional pgvector capability
+
+The PostgreSQL 18 image includes pgvector, but the service does not enable any
+database extension by default. Stacks that require pgvector can add `vector` to
+`POSTGRES_DB_EXTENSIONS`; the configured extensions are created in both the
+initial database and databases provisioned through Wodby.
 
 ## Maintain a custom version
 
