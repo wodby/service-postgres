@@ -4,7 +4,7 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: '18-1.45.0'
+  tag: '18-pgvector-1.46.0'
   eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
@@ -14,8 +14,13 @@ endpoints:
     protocol: tcp
 scalable: false
 labels:
+- pgvector
 - postgres
 - postgresql
+
+env:
+- name: POSTGRES_DB_EXTENSIONS
+  value: ''
 
 volumes:
 - name: data
