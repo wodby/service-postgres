@@ -6,6 +6,9 @@ options:
 - version: '18'
   tag: '18-1.45.0'
   eol: '2030-11-14T00:00:00+00:00'
+- version: '17'
+  tag: '17-1.45.0'
+  eol: '2029-11-08T00:00:00+00:00'
 endpoints:
 - name: postgres
   ports:
@@ -147,6 +150,13 @@ configs:
   default:
     source: image
     filepath: /etc/gotpl/postgresql-18.conf.tmpl
+- name: config
+  title: PostgreSQL config
+  version: '17'
+  filepath: /etc/gotpl/postgresql.conf.tmpl
+  default:
+    source: image
+    filepath: /etc/gotpl/postgresql-17.conf.tmpl
 
 backups:
 - name: database
@@ -168,6 +178,7 @@ backups:
   stream:
     optionVersions:
     - '18'
+    - '17'
     args:
     - make
     - backup-stream
