@@ -182,6 +182,18 @@ backups:
     filepath: /var/lib/postgresql/backup.sql.gz
     extension: sql.gz
 
+actions:
+# Earlier image releases kept tables in a schema named after the database. This converts such
+# databases to the public schema; it leaves alone databases the image did not set up and does
+# nothing once a database is converted.
+- name: adopt-databases
+  title: Update database access layout
+  type: post_upgrade
+  args:
+  - make
+  - adopt-dbs
+  - 'host="{{database.host}}"'
+
 tokens:
 - name: password
   generate:
