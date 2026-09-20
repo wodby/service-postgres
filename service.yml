@@ -4,7 +4,7 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: '18-1.47.1'
+  tag: 18-r0
   eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
@@ -128,7 +128,7 @@ helm:
   name: wodby
   source: oci://registry-1.docker.io/wodby/postgres
   chart: oci://registry-1.docker.io/wodby/postgres
-  version: 0.3.1
+  version: 0.3.2
   valueMappings:
     replicas: primary.replicaCount
     strategy: primary.updateStrategy
