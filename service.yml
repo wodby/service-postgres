@@ -112,6 +112,11 @@ imports:
     - name: POSTGRES_INITDB_PASSWORD
       value: '{{database.user.password}}'
       secret: true
+    # A backup of an earlier image release keeps its tables in a schema named after the database
+    # it was taken from. Naming that database lets the image convert the schema when the backup
+    # is imported into a database with another name. Empty for uploads and URLs.
+    - name: POSTGRES_INITDB_SOURCE_DB
+      value: '{{import.source.database.db.name}}'
   extensions:
   - gz
   - tar.gz
