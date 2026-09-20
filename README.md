@@ -37,7 +37,7 @@ configuration for PostgreSQL.
 | Containers | `postgresql` using `wodby/postgres` |
 | Endpoints | `postgres`: TCP 5432 |
 | Volumes | Data, 10 GB |
-| Helm | chart `oci://registry-1.docker.io/wodby/postgres`; version `0.3.1` |
+| Helm | chart `oci://registry-1.docker.io/wodby/postgres`; version `0.3.2` |
 | Configuration | 1 configuration files, 3 generated or fixed tokens |
 | Operations | 1 import workflows, 1 backup workflows |
 
