@@ -4,7 +4,7 @@ type: db
 title: PostgreSQL
 options:
 - version: '18'
-  tag: 18-r0
+  tag: 18-r1
   eol: '2030-11-14T00:00:00+00:00'
 endpoints:
 - name: postgres
