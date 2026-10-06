@@ -2,6 +2,7 @@ name: postgres
 icon: postgres
 type: db
 title: PostgreSQL
+guidance: GUIDANCE.md
 options:
 - version: '18'
   tag: 18-r1
