@@ -32,7 +32,7 @@ configuration for PostgreSQL.
 | --- | --- |
 | Service name | `postgres` |
 | Type | Database |
-| Versions | `18` by default |
+| Versions | `18` by default; `17` supported |
 | Workloads | `main` (StatefulSet), primary; fixed replica count |
 | Containers | `postgresql` using `wodby/postgres` |
 | Endpoints | `postgres`: TCP 5432 |
