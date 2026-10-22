@@ -5,10 +5,10 @@ title: PostgreSQL
 guidance: GUIDANCE.md
 options:
 - version: '18'
-  tag: 18-r1
+  tag: 18-r2
   eol: '2030-11-14T00:00:00+00:00'
 - version: '17'
-  tag: 17-r1
+  tag: 17-r2
   eol: '2029-11-08T00:00:00+00:00'
 endpoints:
 - name: postgres
