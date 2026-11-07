@@ -218,6 +218,10 @@ workloads:
   containers:
   - name: postgresql
     image: wodby/postgres
+    resources:
+      request:
+        cpu: 20
+        memory: 64
     helm:
       resources: primary.resources
       env: primary.extraEnvVars
