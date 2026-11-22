@@ -39,6 +39,7 @@ configuration for PostgreSQL.
 | Volumes | Data, 10 GB |
 | Helm | chart `oci://registry-1.docker.io/wodby/postgres`; version `0.3.2` |
 | Configuration | 1 configuration files, 3 generated or fixed tokens |
+| Settings | Max prepared transactions (`0`, off) |
 | Operations | 1 import workflows, 1 backup workflows |
 
 ## Use this service
@@ -56,6 +57,13 @@ The PostgreSQL 18 image includes pgvector, but the service does not enable any
 database extension by default. Stacks that require pgvector can add `vector` to
 `POSTGRES_DB_EXTENSIONS`; the configured extensions are created in both the
 initial database and databases provisioned through Wodby.
+
+## Two-phase commit
+
+Prepared transactions (`PREPARE TRANSACTION`) are off by default. Set **Max
+prepared transactions** above 0 for applications that coordinate one
+transaction across several servers; for example, the openBIS stack sets it to
+64. Changing the value restarts PostgreSQL.
 
 ## Maintain a custom version
 

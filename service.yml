@@ -24,6 +24,19 @@ labels:
 - postgres
 - postgresql
 
+settings:
+# Two-phase commit (PREPARE TRANSACTION) is off by default, as in PostgreSQL.
+# Applications that coordinate transactions across servers, such as openBIS,
+# need it. Changing the value restarts PostgreSQL.
+- name: max-prepared-transactions
+  title: Max prepared transactions
+  description: How many transactions can wait in the prepared state of a two-phase commit at once. 0 turns two-phase commit off.
+  var: POSTGRES_MAX_PREPARED_TRANSACTIONS
+  default: '0'
+  validation:
+    rules:
+    - regex: '^(0|[1-9][0-9]{0,3})$'
+      message: Enter a whole number from 0 to 9999.
 volumes:
 - name: data
   title: Data
