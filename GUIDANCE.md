@@ -33,6 +33,7 @@ Wodby creates extensions as the administrator. `POSTGRES_DB_EXTENSIONS` on this 
 The container writes `/etc/postgresql/postgresql.conf` on every start from a template and environment variables. Two ways to change settings, neither of them editing the generated file:
 
 - Set a variable on this service: `POSTGRES_MAX_CONNECTIONS`, `POSTGRES_SHARED_BUFFERS`, `POSTGRES_WORK_MEM`, `POSTGRES_MAINTENANCE_WORK_MEM`, `POSTGRES_EFFECTIVE_CACHE_SIZE`, `POSTGRES_MAX_WAL_SIZE`, `POSTGRES_TIMEZONE`, `POSTGRES_SHARED_PRELOAD_LIBRARIES`.
+- Set the setting **Max prepared transactions** (`POSTGRES_MAX_PREPARED_TRANSACTIONS`, default `0`) above 0 for applications that use two-phase commit (`PREPARE TRANSACTION`). PostgreSQL restarts to apply it.
 - Override the service's config file `config` ("PostgreSQL config"), which replaces the template, for a setting no variable covers.
 
 A change applies with the next deployment of the service. The service runs a single instance.
